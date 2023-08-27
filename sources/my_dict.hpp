@@ -1,15 +1,70 @@
+#include <vector>
+#include <string>
+#include <map>
+#include <any>
+#include <iterator>
+#include <stdexcept>
+#include <ostream>
 
+using std::iterator;
+using std::vector;
+using std::string;
+using std::map;
+using std::any;
+using std::ostream;
 
 namespace mydict
 {
-    class dictionary
+    /**
+     * @brief A small dictionary implementation. *
+     * sources:
+     * 1. https://stackoverflow.com/questions/327311/how-are-pythons-built-in-dictionaries-implemented
+     */
+    class Dictionary
     {
         public:
-            dictionary();
-            dictionary(const dictionary & other);
-            dictionary(dictionary && other);
+            class Iterator;
+        public:
+            Dictionary();
+            Dictionary(const Dictionary& other);
+            Dictionary(Dictionary&& other);
+            Dictionary& operator=(const Dictionary& other);
+            Dictionary& operator=(Dictionary&& other);
+            ~Dictionary();
 
-            ~dictionary();
+            Iterator begin();
+            Iterator end();
+            Iterator begin_keys();
+            Iterator end_keys();
+            Iterator begin_values();
+            Iterator end_values();
+
+            Dictionary& operator[](const string key);
+            bool contains_key(const string key);
+            bool contains_value(const any val);
+
+            friend ostream &operator<<(ostream &out, Dictionary &dict);
+
+        private:
+            map<string, any> dict;
+
+        public:
+            class Iterator
+            {
+                Iterator(Dictionary dict);
+
+                Iterator &operator++();
+
+                Iterator operator++(int);
+
+                string *operator->();
+
+                string operator*();
+
+                bool operator==(const Iterator &other) const;
+
+                bool operator!=(const Iterator &other) const;
+            };
 
     };
 }
