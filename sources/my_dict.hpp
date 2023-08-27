@@ -51,19 +51,20 @@ namespace mydict
         public:
             class Iterator
             {
-                Iterator(const Dictionary& dict);
+                public:
+                    Iterator();
 
-                Iterator &operator++();
+                    Iterator &operator++();
 
-                Iterator operator++(int);
+                    Iterator operator++(int);
 
-                any *operator->();
+                    any *operator->();
 
-                any operator*();
+                    any operator*();
 
-                bool operator==(const Iterator &other) const;
+                    bool operator==(const Iterator &other) const;
 
-                bool operator!=(const Iterator &other) const;
+                    bool operator!=(const Iterator &other) const;
             };
 
     };

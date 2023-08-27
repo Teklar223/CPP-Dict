@@ -1,13 +1,14 @@
 #include <iostream>
 #include <fstream>
-using namespace std;
+
+#include "my_dict.hpp"
  
 int main() {
    // Create and open a text file
-  ofstream MyFile("filename.txt");
+  std::ofstream MyFile("log.txt");
 
   // Write to the file
-  MyFile << "Files can be tricky, but it is fun enough!";
+  MyFile << "************ Start of log ************" << std::endl;;
 
   // Close the file
   MyFile.close();
