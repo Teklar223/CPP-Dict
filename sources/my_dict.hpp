@@ -39,27 +39,27 @@ namespace mydict
             Iterator begin_values();
             Iterator end_values();
 
-            Dictionary& operator[](const string key);
+            any& operator[](const string key);
             bool contains_key(const string key);
             bool contains_value(const any val);
 
             friend ostream &operator<<(ostream &out, Dictionary &dict);
 
         private:
-            map<string, any> dict;
+            map<string, any> dict; // stage 2: implement this part myself
 
         public:
             class Iterator
             {
-                Iterator(Dictionary dict);
+                Iterator(const Dictionary& dict);
 
                 Iterator &operator++();
 
                 Iterator operator++(int);
 
-                string *operator->();
+                any *operator->();
 
-                string operator*();
+                any operator*();
 
                 bool operator==(const Iterator &other) const;
 
