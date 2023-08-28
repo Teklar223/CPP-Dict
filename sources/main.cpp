@@ -2,6 +2,8 @@
 #include <fstream>
 #include "my_dict.hpp"
 
+using mydict::Dictionary;
+
 class Logger
 {
   private:
@@ -27,5 +29,10 @@ class Logger
 int main() {
   Logger log = Logger();
   log("************ Start of log ************");
+
+  Dictionary dict;
+  dict["first"] = "5";
+  dict["second"] = "second";
+  dict["three"] = "2.74";
 
 }

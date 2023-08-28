@@ -43,8 +43,8 @@ namespace mydict
         printf("contains_key call %s\n",key.c_str());
         return true;
     }
-
-    bool Dictionary::contains_value(const any value)
+    
+    bool Dictionary::contains_value(const string value)
     {
         printf("contains_value call %p\n", &value);
         return true;
@@ -52,15 +52,26 @@ namespace mydict
 
     /* Operators */
 
-    ostream &operator<<(ostream& out, Dictionary& dict)
+    ostream &operator<<(ostream& out, Dictionary& dict) // TODO: implement for string too?
     {
         out << "Cout not implemented " << &dict << std::endl;
         return out;
     }
 
-    any& Dictionary::operator[](const string key)
+    DictEntry& Dictionary::operator[](const string key) const
     {
-        return dict.at(key);
+        try
+        {
+            printf("%p\n",&key);
+            DictEntry* tmp = new DictEntry();
+            return *tmp;
+        }
+        catch(...)
+        {
+            printf("%p\n",&key);
+            DictEntry* tmp = new DictEntry();
+            return *tmp;
+        }
     }
 
     /* Iterator idioms */
@@ -120,16 +131,16 @@ namespace mydict
         return *this;
     }
 
-    any* Dictionary::Iterator::operator->()
+    string* Dictionary::Iterator::operator->()
     {
         printf("iterator -> call");
         return nullptr;
     }
 
-    any Dictionary::Iterator::operator*()
+    string Dictionary::Iterator::operator*()
     {
         printf("iterator * call");
-        return 1;
+        return "1";
     }
 
     bool Dictionary::Iterator::operator==(const Iterator &other) const
